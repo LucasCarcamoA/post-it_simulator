@@ -1,14 +1,13 @@
-import React, {useRef, useState} from "react";
+import React from "react";
 import './Style.css';
 
-function Postit(props){
+function Postit(props) {
     return (
-        <div className="col-md-3">
-            <div className="card text-bg">
-                <div className="card-header">titulo</div>
-                <div className="card-body">
-                    <p className="card-text">cuerpo</p>
-                </div>
+        <div className={`col-md-3 ${props.importante ? 'importante' : ''}`}>
+            <div className="card-body mt-3">
+                <h5 className="card-title">{props.titulo || ""}</h5>
+                <br></br>
+                <p className="card-text">{props.descripcion}</p>
             </div>
         </div>
     );
