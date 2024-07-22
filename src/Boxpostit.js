@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Postit from "./Postit";
 import { v4 as uuid } from 'uuid';
 
@@ -7,6 +7,23 @@ function Boxpostit() {
     const tituloRef = useRef();
     const descripcionRef = useRef();
     const importanteRef = useRef();
+
+    //local storage
+    const KEY =  'post-it-simulator'
+
+    useEffect(()=>{
+        const misPostit = JSON.parse(localStorage.getItem(KEY));
+        if (misPostit){
+            setPostits(misPostit)
+        }
+    }, [])
+
+    useEffect(()=>{
+        const json = JSON.stringify(postits);
+        console.log(json);
+        localStorage.setItem(KEY, json);
+    }, [postits]);
+    //-------------------------------------
 
     const agregarPostit = () => {
         const titulo = tituloRef.current.value;
