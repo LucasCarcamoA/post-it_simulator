@@ -1,7 +1,7 @@
-// Boxpostit.js
 import React, { useEffect, useRef, useState } from "react";
 import Postit from "./Postit";
 import { v4 as uuid } from 'uuid';
+import './Style.css';
 
 function Boxpostit() {
     const [postits, setPostits] = useState([]);
@@ -59,7 +59,7 @@ function Boxpostit() {
     return (
         <div className="container my-3">
             <div className="row g-3">
-                <h2>Post It Simulator!</h2>
+                <h2 className="hh">Post It Simulator!</h2>
                 <div className="col-md-4">
                     <input ref={tituloRef} className="form-control" placeholder="Título" />
                 </div>

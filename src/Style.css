@@ -13,6 +13,11 @@
     background-size: cover;
 }
 
+.hh {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
 .importante .card-body {
     background-color: rgb(252, 123, 97);
     background: url('/textures/textura-importante.png');
