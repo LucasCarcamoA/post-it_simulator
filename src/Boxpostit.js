@@ -72,7 +72,7 @@ function Boxpostit() {
                 </div>
                 <div className="col-md-2">
                     <div className="d-grid gap-2">
-                        <button onClick={agregarPostit} className="btn btn-dark" type="button">Agregar</button>
+                        <button onClick={agregarPostit} className="btn btn-secondary" type="button">Agregar</button>
                     </div>
                 </div>
             </div>
