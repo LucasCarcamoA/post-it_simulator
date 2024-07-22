@@ -9,17 +9,17 @@ function Boxpostit() {
     const descripcionRef = useRef();
     const importanteRef = useRef();
 
-    //local storage
-    const KEY =  'post-it-simulator'
+    // Local storage
+    const KEY = 'post-it-simulator';
 
-    useEffect(()=>{
+    useEffect(() => {
         const misPostit = JSON.parse(localStorage.getItem(KEY));
-        if (misPostit){
-            setPostits(misPostit)
+        if (misPostit) {
+            setPostits(misPostit);
         }
-    }, [])
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         const json = JSON.stringify(postits);
         console.log(json);
         localStorage.setItem(KEY, json);
@@ -31,7 +31,7 @@ function Boxpostit() {
         const descripcion = descripcionRef.current.value;
         const importante = importanteRef.current.checked;
 
-        if (descripcion === '')  return;
+        if (descripcion === '') return;
 
         const rotation = Math.random() < 0.5 ? 'left' : 'right';
 
@@ -42,40 +42,52 @@ function Boxpostit() {
                 titulo: titulo,
                 descripcion: descripcion,
                 rotation: rotation
-            }
+            };
             return [...prev, nuevoPostit];
         });
 
-        //// Limpiar los campos de entrada después de agregar el postit ////
+        // Limpiar los campos de entrada después de agregar el postit
         tituloRef.current.value = '';
         descripcionRef.current.value = '';
         importanteRef.current.checked = false;
-    }
+    };
+
+    const eliminarPostit = (id) => {
+        setPostits((prev) => prev.filter(postit => postit.id !== id));
+    };
 
     return (
         <div className="container my-3">
             <div className="row g-3">
                 <h2>Post It Simulator!</h2>
                 <div className="col-md-4">
-                    <input ref={tituloRef} className="form-control" placeholder="Título"></input>
+                    <input ref={tituloRef} className="form-control" placeholder="Título" />
                 </div>
                 <div className="col-md-4">
-                    <input ref={descripcionRef} className="form-control" placeholder="Descripcion"></input>
+                    <input ref={descripcionRef} className="form-control" placeholder="Descripción" />
                 </div>
                 <div className="form-check col-md-2">
-                    <input ref={importanteRef} className="form-check-input" type="checkbox"></input>
+                    <input ref={importanteRef} className="form-check-input" type="checkbox" />
                     <label className="form-check-label" htmlFor="importante">Importante!</label>
                 </div>
                 <div className="col-md-2">
                     <div className="d-grid gap-2">
-                      <button onClick={agregarPostit} className="btn btn-dark" type="button">Agregar</button> 
+                        <button onClick={agregarPostit} className="btn btn-dark" type="button">Agregar</button>
                     </div>
                 </div>
             </div>
             <br></br>
             <div className="row g-3">
                 {postits.map(postit => (
-                    <Postit key={postit.id} titulo={postit.titulo} descripcion={postit.descripcion} importante={postit.importante} rotation={postit.rotation} />
+                    <Postit
+                        key={postit.id}
+                        id={postit.id}
+                        titulo={postit.titulo}
+                        descripcion={postit.descripcion}
+                        importante={postit.importante}
+                        rotation={postit.rotation}
+                        onDelete={eliminarPostit}
+                    />
                 ))}
             </div>
         </div>
