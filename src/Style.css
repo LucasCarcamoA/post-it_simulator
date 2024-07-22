@@ -1,21 +1,36 @@
 .importante .card-body {
-    background-color: rgb(255, 161, 161);
+    background-color: rgb(252, 123, 97);
 }
 
 .card-body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 0;
-    background-color: rgb(241, 229, 157);
+    background-color: rgb(251, 243, 197);
     padding: 20px;
     min-width: 200px;
     max-width: 300px;
     min-height: 200px;
     max-height: 300px;
+    box-shadow: 5px 5px 10px 1px #2a2a2a;
 }
+
+.rotate-left {
+    transform: rotate(-5deg);
+}
+
+.rotate-right {
+    transform: rotate(5deg);
+}
+
+.col-md-3 {
+    transition: transform 0.5s ease;
+}
+
 
 body {
     padding: 0%;
     margin: 0;
-    background-color: rgb(63, 63, 63);
+    background-color: rgb(113, 113, 113);
 }
 
 h2 {

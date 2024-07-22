@@ -1,3 +1,4 @@
+// Boxpostit.js
 import React, { useEffect, useRef, useState } from "react";
 import Postit from "./Postit";
 import { v4 as uuid } from 'uuid';
@@ -32,12 +33,15 @@ function Boxpostit() {
 
         if (descripcion === '')  return;
 
+        const rotation = Math.random() < 0.5 ? 'left' : 'right';
+
         setPostits((prev) => {
             const nuevoPostit = {
                 id: uuid(),
                 importante: importante,
                 titulo: titulo,
-                descripcion: descripcion
+                descripcion: descripcion,
+                rotation: rotation
             }
             return [...prev, nuevoPostit];
         });
@@ -60,17 +64,18 @@ function Boxpostit() {
                 </div>
                 <div className="form-check col-md-2">
                     <input ref={importanteRef} className="form-check-input" type="checkbox"></input>
-                    <label class="form-check-label" for="importante">Importante!</label>
+                    <label className="form-check-label" htmlFor="importante">Importante!</label>
                 </div>
                 <div className="col-md-2">
                     <div className="d-grid gap-2">
-                      <button onClick={agregarPostit} className="btn btn-primary" type="button">Agregar</button> 
+                      <button onClick={agregarPostit} className="btn btn-dark" type="button">Agregar</button> 
                     </div>
                 </div>
             </div>
+            <br></br>
             <div className="row g-3">
                 {postits.map(postit => (
-                    <Postit key={postit.id} titulo={postit.titulo} descripcion={postit.descripcion} importante={postit.importante} />
+                    <Postit key={postit.id} titulo={postit.titulo} descripcion={postit.descripcion} importante={postit.importante} rotation={postit.rotation} />
                 ))}
             </div>
         </div>
